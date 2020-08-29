@@ -9,3 +9,7 @@
 .delete-form {
     display: inline;
 }
+
+#comment-container {
+    padding-bottom: 1em;
+}

@@ -1,4 +1,4 @@
-<%- include("../partials/header") %> 
+<%- include("../partials/header") %>
 
 <div class="container">
     <div class="row">
@@ -12,7 +12,8 @@
         </div>
         <div class="col-md-9">
             <div class="thumbnail">
-                <img class="img-responsive" src="<%= campground.img %>" alt="An image of the <%= campground.name %> campground!">
+                <img class="img-responsive" src="<%= campground.img %>"
+                    alt="An image of the <%= campground.name %> campground!">
                 <div class="caption caption-full">
                     <h4 class="pull-right">$9.00/night</h4>
                     <h4>
@@ -21,34 +22,38 @@
                     <p><%= campground.description %></p>
                     <p><em>Submitted by <%= campground.author.username %></em></p>
                     <% if (curUser && campground.author.id.equals(curUser._id)) { %>
-                        <a class="btn btn-warning btn-xs" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
-                        <form class="delete-form" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
-                            <button class="btn btn-danger btn-xs">Delete</button>
-                        </form>
+                    <a class="btn btn-warning btn-xs" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
+                    <form class="delete-form" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger btn-xs">Delete</button>
+                    </form>
                     <% } %>
                 </div>
             </div>
             <div class="well">
                 <div class="text-right">
-                    <a class="btn btn-xs btn-success" href="/campgrounds/<%= campground._id %>/comments/new">New Comment</a>
+                    <a class="btn btn-xs btn-success" href="/campgrounds/<%= campground._id %>/comments/new">New
+                        Comment</a>
                 </div>
                 <hr>
                 <% for (const comment of campground.comments) { %>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <strong><%= comment.author.username %></strong>
-                            <span class="pull-right">
-                                10 days ago
-                            </span>
-                            <p><%= comment.text %></p>
-                            <% if (curUser && comment.author.id.equals(curUser._id)) { %>
-                                <a class="btn btn-xs btn-warning" href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">Edit</a>
-                                <form class="delete-form" action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
-                                    <button class="btn btn-xs btn-danger">Delete</button>
-                                </form>
-                            <% } %>
-                        </div>
+                <div class="row">
+                    <div id="comment-container" class="col-md-12">
+                        <strong><%= comment.author.username %></strong>
+                        <span class="pull-right">
+                            10 days ago
+                        </span>
+                        <p><%= comment.text %></p>
+                        <% if (curUser && comment.author.id.equals(curUser._id)) { %>
+                        <a class="btn btn-xs btn-warning"
+                            href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">Edit</a>
+                        <form class="delete-form"
+                            action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE"
+                            method="POST">
+                            <button class="btn btn-xs btn-danger">Delete</button>
+                        </form>
+                        <% } %>
                     </div>
+                </div>
                 <% } %>
             </div>
         </div>
